@@ -7,11 +7,11 @@ namespace eshopCar.Models
 {
     public class CategoryRepository : ICategoryRepository
     {
-        public IEnumerable<Category> GetAllCategories => new List<Category>
+        private readonly AppDbContext _appDbContext;
+        public CategoryRepository(AppDbContext appDbContext)
         {
-            new Category{CategoryId=1, CategoryName="Sedan", CategoryDescription="Sedan is the category of "},
-            new Category{CategoryId=2, CategoryName="Suv", CategoryDescription="Suv is the category of "},
-            new Category{CategoryId=3, CategoryName="Small", CategoryDescription="Small is the category of "}
-        };
+            _appDbContext = appDbContext;
+        }
+        public IEnumerable<Category> GetAllCategories => _appDbContext.Categories;
     }
 }
