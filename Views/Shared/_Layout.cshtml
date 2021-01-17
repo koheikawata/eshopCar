@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <link href="~/content/site.css?11111" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-md-3 col-lg-3 p-1 pt-5">
+                <img src="~/Images/honda-logo.jpg" class="img-fluid" />
+            </div>
+            <div class="col-sm-9 col-md-9 col-lg-9 p-5">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

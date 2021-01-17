@@ -1,0 +1,24 @@
+﻿body {
+    padding-top: 30px;
+    background-image: url('/images/pattern2.png');
+    background-repeat: repeat;
+}
+
+.caption {
+    font-size: small;
+    height: 300px;
+    overflow: hidden;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+    .thumbnail .caption-full {
+        padding: 9px;
+        color: #333;
+    }
+
+    .thumbnail img {
+        width: 100%;
+    }
