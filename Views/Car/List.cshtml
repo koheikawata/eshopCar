@@ -7,16 +7,7 @@
     <div class="row">
         @foreach (var car in Model.Car)
         {
-            <div class="col-sm-4 col-md-4 col-lg-4 p-2">
-                <div class="thumbnail">
-                    <img src="@car.ImageThumbNailUrl" />
-                    <div class="caption">
-                        <h3 class="float-right">@car.Price.ToString("c")</h3>
-                        <h3>@car.Name</h3>
-                        <p>@car.Description</p>
-                    </div>
-                </div>
-            </div>
+            <partial name="_carCard" model="car" />
         }
     </div>
 </div>
