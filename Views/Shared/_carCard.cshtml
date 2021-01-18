@@ -7,4 +7,9 @@
         <h3><a asp-controller="Car" asp-action="Details" asp-route-id="@Model.CarId">@Model.Name</a></h3>
         <p>@Model.Description</p>
     </div>
+    <div class="addToCart">
+        <p>
+            <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-carId="@Model.CarId">Add to cart</a>
+        </p>
+    </div>
 </div> 

@@ -1,11 +1,16 @@
 ﻿@model Car
 
  <h1>@Model.Name</h1>
-<div class="thumbnail">
-    <img src="@Model.ImageUrl" class="img-fluid" alt="@Model.Name" />
-    <div class="caption-full">
-        <h3 class="float-right">@Model.Price.ToString("c")</h3>
-        <h3><a href="#">@Model.Name</a></h3>
-        <p>@Model.Description</p>
-    </div>
-</div>
+ <div class="thumbnail">
+     <img src="@Model.ImageUrl" class="img-fluid" alt="@Model.Name" />
+     <div class="caption-full">
+         <h3 class="float-right">@Model.Price.ToString("c")</h3>
+         <h3><a href="#">@Model.Name</a></h3>
+         <p>@Model.Description</p>
+     </div>
+     <div class="addToCart">
+         <p>
+             <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-carId="@Model.CarId">Add to cart</a>
+         </p>
+     </div>
+ </div>
