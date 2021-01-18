@@ -6,7 +6,8 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <link href="~/content/site.css?12" rel="stylesheet" />
+    <link href="~/content/site.css?123" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -18,6 +19,8 @@
             <li class="nav-item">
                 <a asp-controller="Car" asp-action="List">Car List</a>
             </li>
+            @await Component.InvokeAsync("ShoppingCartSummary")
+            @await Component.InvokeAsync("CategoryMenu") 
         </ul>
         <div class="row">
             <div class="col-sm-3 col-md-3 col-lg-3 p-1 pt-5">

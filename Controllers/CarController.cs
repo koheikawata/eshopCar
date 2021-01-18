@@ -1,4 +1,5 @@
-﻿using eshopCar.Models;
+﻿using eshopCar.Components;
+using eshopCar.Models;
 using eshopCar.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,15 +19,27 @@ namespace eshopCar.Controllers
             _carRepository = carRepository;
         }
 
-        public IActionResult List()
+        public ViewResult List(string category)
         {
-            var carListViewModel = new CarListViewModel()
-            {
-                Car = _carRepository.GetAllCars,
-                CurrentCategory = "Bestsellers"
-            };
+            IEnumerable<Car> cars;
+            string currentCategory;
 
-            return View(carListViewModel);
+            if (string.IsNullOrEmpty(category))
+            {
+                cars = _carRepository.GetAllCars.OrderBy(c => c.CarId);
+                currentCategory = "All cars";
+            }
+            else
+            {
+                cars = _carRepository.GetAllCars.Where(c => c.Category.CategoryName == category);
+                currentCategory = _categoryRepository.GetAllCategories.FirstOrDefault(c => c.CategoryName == category)?.CategoryName;
+            }
+
+            return View(new CarListViewModel
+            {
+                Car = cars,
+                CurrentCategory = currentCategory
+            });
         }
 
         public IActionResult Details(int id)
