@@ -20,7 +20,8 @@
                 <a asp-controller="Car" asp-action="List">Car List</a>
             </li>
             @await Component.InvokeAsync("ShoppingCartSummary")
-            @await Component.InvokeAsync("CategoryMenu") 
+            @await Component.InvokeAsync("CategoryMenu")
+            <li><a asp-controller="Contact" asp-action="Index">Contact</a></li>
         </ul>
         <div class="row">
             <div class="col-sm-3 col-md-3 col-lg-3 p-1 pt-5">
