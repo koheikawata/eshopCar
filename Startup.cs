@@ -30,6 +30,7 @@ namespace eshopCar
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ShoppingCart>(sc => ShoppingCart.GetCart(sc));
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddHttpContextAccessor();
             services.AddSession();
