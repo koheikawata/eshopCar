@@ -1,3 +1,9 @@
+using eshopCar.ApplicationCore;
+using eshopCar.ApplicationCore.Interfaces;
+using eshopCar.ApplicationCore.Services;
+using eshopCar.Configuration;
+using eshopCar.Infrastructure.Data;
+using eshopCar.Infrastructure.Identity;
 using eshopCar.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,11 +29,42 @@ namespace eshopCar
         {
             Configuration = configuration;
         }
+
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+            // use in-memory database
+            ConfigureInMemoryDatabases(services);
+
+            // use real database
+            //ConfigureProductionServices(services);
+        }
+
+        private void ConfigureInMemoryDatabases(IServiceCollection services)
+        {
+            // use in-memory database
+            services.AddDbContext<CatalogContext>(c =>
+                c.UseInMemoryDatabase("Catalog"));
+
+            // Add Identity DbContext
+            services.AddDbContext<AppIdentityDbContext>(options =>
+                options.UseInMemoryDatabase("Identity"));
+
+            ConfigureServices(services);
+        }
+
+
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddSingleton<IUriComposer>(new UriComposer(Configuration.Get<CatalogSettings>()));
+            services.AddWebServices(Configuration);
+
+            services.AddMvc();
 
             services.AddControllersWithViews();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
